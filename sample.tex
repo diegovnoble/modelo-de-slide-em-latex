@@ -1,4 +1,3 @@
-%50 minutos -> 40 slides no máximo
 \documentclass[
     mode=present,
     style=dvn,
@@ -7,13 +6,20 @@
     size=14pt,
 ]{powerdot}
 
-\usepackage[utf8]{inputenc}
-\usepackage[sfdefault]{universalis}
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[brazilian]{babel}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,mathtools}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mathtools,array}
 \usepackage{tcolorbox}
-%\usepackage{enumerate}
+%\usepackage{enumitem} % seems to not work with latex old compilation
+\renewcommand{\theenumi}{\alph{enumi}}
+\usepackage{braket}
+\usepackage{booktabs}
+\usepackage{subcaption}
+%\usepackage{natbib}
+\usepackage{bibentry}
+
+\graphicspath{{./pic/}}
 
 \newcommand*\plus{+{}}
 \newcommand*\boxSizeOfMax[1]{\makebox[\widthof{Max}][c]{#1}}
@@ -38,19 +44,16 @@
      %lf=Minimização d,
      counters={thm,defn,conj,exmp},
      %rf=~\arabic{},
-     palette=navy,
+     %palette=navy,
      trans=Wipe,
      theslide=~\arabic{slide},
      list={itemsep=6pt}
  }
 
-\tcbset{colback=pdcolor4,colframe=pdcolor1,coltext=pdcolor1}
-
 \title{Teoria da Complexidade \\
     \small Notação Assintótica\\}
 \author{\smallskip Prof. Diego Noble \\%
-\texttt{\href{mailto:diegovnoble@gmail.com}{\color{pdcolor4}diegovnoble@gmail.com}}}%
-%\texttt{\href{http://www.inf.ufrgs.br/~dvnoble/}{\color{pdcolor4}http://www.inf.ufrgs.br/{\raise.17ex\hbox{$\scriptstyle\sim$}}dvnoble/}}}
+\texttt{\href{mailto:your@mail.com}{\color{pdcolor4}your@mail.com}}}%
 \date{\today}
 
 \begin{document}
@@ -143,7 +146,7 @@
     \vspace{\stretch{1}}
 
     \begin{figure}
-        \input{big}
+        \input{./pic/big}
         \caption{$T(n){\in}\mathcal{O}(f(n))$}
     \end{figure}
     \vspace{\stretch{1}}
@@ -162,7 +165,7 @@
 \begin{slide}{$\Omega$}
     \vspace{\stretch{1}}
     \begin{figure}
-        \input{omega}
+        \input{./pic/omega}
         \caption{$T(n){\in}\Omega(f(n))$}
     \end{figure}
     \vspace{\stretch{1}}
@@ -187,7 +190,7 @@
 \begin{slide}{$\Theta$}
     \vspace{\stretch{1}}
     \begin{figure}
-        \input{tight}
+        \input{./pic/tight}
         \caption{$T(n){\in}\Theta(f(n))$}
     \end{figure}
     \vspace{\stretch{1}}
@@ -208,10 +211,10 @@
 
 \begin{slide}{Bibliografia consultada}
     \vspace{\stretch{1}}
-    \bibliographystyle{acm}
-    \bibliography{refs}
-    \bibentry{cormen12}
-    \bibentry{kleinberg05}
+    \bibliographystyle{alpha}
+    \bibliography{refs.bib}
+    \bibentry{Garey1979}
+    \bibentry{Cormen2009}
     \vspace{\stretch{1}}
 \end{slide}
 \end{document}
