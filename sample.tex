@@ -1,6 +1,6 @@
 % TODO
 % 1. Develop a 'challenge' slide model
-% 2. Develop a shortcut to the red arrow (\myemph{$\rightarrow$})
+% 2. Remove extra trailing space in slides
 % 3. Fix vertical space before a math env (align, gather, multiline, equation, etc)
 % 4. Prepare my own slide env to avoid writing \vspace{\stretch(1)} everytime...
 % 5. Normalize citations to abnt2
@@ -15,37 +15,15 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[brazilian]{babel}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,mathtools,array}
 \usepackage{tcolorbox}
-%\usepackage{enumitem} % seems to not work with latex old compilation method
-\renewcommand{\theenumi}{\alph{enumi}}
 \usepackage{braket}
 \usepackage{booktabs}
 \usepackage{subcaption}
 %\usepackage{natbib}
 \usepackage{bibentry}
-%\usepackage[outputdir={./build}]{minted}
+\usepackage[outputdir={./build}]{minted}
 
 \graphicspath{{./pic/}}
-
-\newcommand*\plus{+{}}
-\newcommand*\boxSizeOfMax[1]{\makebox[\widthof{Max}][c]{#1}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-%\renewcommand{\O}[1]{$\mathcal{O}(#1)$}
-\theoremstyle{plain}
-\newtheorem{thm}{Teorema}
-\newtheorem{lem}[thm]{Lema}
-\newtheorem{prop}[thm]{Proposição}
-\newtheorem*{cor}{Corolário}
-
-\theoremstyle{definition}
-\newtheorem{defn}{Definição}
-\newtheorem{conj}{Conjectura}
-\newtheorem{exmp}{Exemplo}
-
-\theoremstyle{remark}
-\newtheorem*{rem}{Observação}
 
 \pdsetup{
      %lf=Minimização d,
