@@ -11,6 +11,8 @@
 \RequirePackage{pifont}
 \RequirePackage[newcommands]{ragged2e}
 \RequirePackage{tcolorbox}
+\RequirePackage{amsmath,amsthm,amssymb,amsfonts,mathtools,array}
+
 
 \definecolor{pdcolor1}{RGB}{31,54,86}     %%text
 \definecolor{pdcolor2}{RGB}{255,255,255}  %%background
@@ -21,6 +23,25 @@
     linkcolor=pdcolor3,
     urlcolor=pdcolor3,
     citecolor=pdcolor3}
+
+% My commands and theorems
+\renewcommand{\theenumi}{\alph{enumi}}
+\newcommand{\myarw}[1]{\myemph{$\rightarrow$}}
+\newcommand*\plus{+{}}
+\newcommand*\boxSizeOfMax[1]{\makebox[\widthof{Max}][c]{#1}}
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}
+\newtheorem{lem}[thm]{Lema}
+\newtheorem{prop}[thm]{Proposição}
+\newtheorem*{cor}{Corolário}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definição}
+\newtheorem{conj}{Conjectura}
+\newtheorem{exmp}{Exemplo}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Observação}
 
 \tcbset{fonttitle=\large\univrscondensed,colback=pdcolor4,colframe=pdcolor1,coltext=pdcolor1}
 \SetAlFnt{\color{pdcolor1}}   %fix algorithm2e text color
