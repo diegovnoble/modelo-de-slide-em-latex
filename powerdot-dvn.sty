@@ -2,6 +2,7 @@
 \ProvidesPackage{powerdot-dvn}[2018/02/20 Inspired in Jefka style]
 
 \RequirePackage[sfdefault]{universalis}
+\RequirePackage[utf8]{inputenc}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{float}
@@ -10,9 +11,11 @@
 \RequirePackage[dvips]{hyperref}
 \RequirePackage{pifont}
 \RequirePackage[newcommands]{ragged2e}
-\RequirePackage{tcolorbox}
 \RequirePackage{amsmath,amsthm,amssymb,amsfonts,mathtools,array}
-
+\RequirePackage[outputdir={./build}]{minted}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{minted, skins}
+\RequirePackage{inconsolata}
 
 \definecolor{pdcolor1}{RGB}{31,54,86}     %%text
 \definecolor{pdcolor2}{RGB}{255,255,255}  %%background
@@ -26,7 +29,7 @@
 
 % My commands and theorems
 \renewcommand{\theenumi}{\alph{enumi}}
-\newcommand{\myarw}[1]{\myemph{$\rightarrow$}}
+\newcommand{\myarw}{\myemph{$\rightarrow$}}
 \newcommand*\plus{+{}}
 \newcommand*\boxSizeOfMax[1]{\makebox[\widthof{Max}][c]{#1}}
 \theoremstyle{plain}
@@ -43,7 +46,36 @@
 \theoremstyle{remark}
 \newtheorem*{rem}{Observação}
 
-\tcbset{fonttitle=\large\univrscondensed,colback=pdcolor4,colframe=pdcolor1,coltext=pdcolor1}
+\tcbset{%
+    fonttitle=\large\univrscondensed,
+    coltext=pdcolor1,
+    colback=pdcolor4,
+    colframe=pdcolor1
+}
+\newtcblisting{mycpp}[1]{%
+    listing engine=minted,
+    minted language=c++,
+    minted style=borland,
+    fonttitle=\large\univrscondensed,
+    minted options={
+        fontsize=\scriptsize,
+        fontfamily=tt,
+        funcnamehighlighting=true,
+        breaklines,
+        autogobble,
+        linenos,
+        numbersep=5pt,
+    },
+    title=#1,
+    center title,
+    colback=pdcolor4,
+    colframe=pdcolor1,
+    coltext=pdcolor1,
+    listing only,
+    left=5mm,
+    %drop fuzzy shadow, % tikz only
+    %enhanced % tikz only
+}
 \SetAlFnt{\color{pdcolor1}}   %fix algorithm2e text color
 \DeclareTextFontCommand\myemph{\em\color{pdcolor3}}
 
