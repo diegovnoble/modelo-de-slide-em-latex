@@ -1,9 +1,3 @@
-% TODO
-% 1. Develop a 'challenge' slide model
-% 2. Remove extra trailing space in slides
-% 3. Fix vertical space before a math env (align, gather, multiline, equation, etc)
-% 4. Prepare my own slide env to avoid writing \vspace{\stretch(1)} everytime...
-% 5. Normalize citations to abnt2
 \documentclass[
     mode=present,
     style=dvn,
@@ -13,23 +7,7 @@
 ]{powerdot}
 
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage[brazilian]{babel}
-\usepackage{booktabs}
-\usepackage{subcaption}
-\usepackage{bibentry}
-
-\graphicspath{{./pic/}}
-
-\pdsetup{
-     %lf=Minimização d,
-     counters={thm,defn,conj,exmp},
-     %rf=~\arabic{},
-     %palette=navy,
-     trans=Wipe,
-     theslide=~\arabic{slide},
-     list={itemsep=6pt}
- }
 
 \title{Teoria da Complexidade \\
     \small Notação Assintótica\\}
@@ -188,7 +166,28 @@
     \vspace{\stretch{1}}
 \end{slide}
 
-%\section{Leituras}
+\begin{slide}[method=direct]{Pure Minted Sample}
+    \vspace{\stretch{1}}
+    \begin{minted}{c}
+int main(void){
+    return 0;
+}
+    \end{minted}
+    \vspace{\stretch{1}}
+\end{slide}
+
+\begin{slide}[method=direct]{CodeBox Sample Minted Simple}
+    \vspace{\stretch{1}}
+    \begin{cbox}{Listing}
+int main(void){
+    return 0;
+}
+// cbox, cppbox, javabox, pythonbox, haskellbox.
+    \end{cbox}{teste}
+    \vspace{\stretch{1}}
+\end{slide}
+
+\section{Leituras}
 
 \begin{slide}{Bibliografia consultada}
     \vspace{\stretch{1}}

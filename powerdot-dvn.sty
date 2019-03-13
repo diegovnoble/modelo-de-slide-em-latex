@@ -1,13 +1,19 @@
+%TODO: learn to use /renewtcblisting to avoid code repetitions in /newtcblisting commands (there is one for each language right now).
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{powerdot-dvn}[2018/02/20 Inspired in Jefka style]
+\ProvidesPackage{powerdot-dvn}[2019/03/12 Inspired in Jefka style]
 
 \RequirePackage[sfdefault]{universalis}
+%\RequirePackage{inconsolata}
+\RequirePackage[varqu]{zi4} %updated inconsolata
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
+\graphicspath{{./pic/}}
 \RequirePackage{float}
-\RequirePackage[plain,portuguese,slide,linesnumbered]{algorithm2e}
+\RequirePackage[plain,slide,linesnumbered]{algorithm2e}
 \RequirePackage{bibentry}
+\RequirePackage{booktabs}
+\RequirePackage{subcaption}
 \RequirePackage[dvips]{hyperref}
 \RequirePackage{pifont}
 \RequirePackage[newcommands]{ragged2e}
@@ -15,9 +21,10 @@
 \RequirePackage{braket}
 \RequirePackage[outputdir={./build}]{minted}
 \RequirePackage{tcolorbox}
-\tcbuselibrary{minted, skins}
-\RequirePackage{inconsolata}
+\tcbuselibrary{minted,skins}
+\RequirePackage{multicol}
 
+%The color pallete used
 \definecolor{pdcolor1}{RGB}{31,54,86}     %%text
 \definecolor{pdcolor2}{RGB}{255,255,255}  %%background
 \definecolor{pdcolor3}{RGB}{229,74,69}    %%title
@@ -26,47 +33,61 @@
 \hypersetup{colorlinks,
     linkcolor=pdcolor3,
     urlcolor=pdcolor3,
-    citecolor=pdcolor3}
+    citecolor=pdcolor3
+}
 
 % My commands and theorems
-\renewcommand{\theenumi}{\alph{enumi}}
-\newcommand{\myarw}{\myemph{$\rightarrow$}}
+\renewcommand{\theenumi}{\alph{enumi}}%Enumerate becomes alphanumeric by default.
+\newcommand{\myarw}{\myemph{$\rightarrow$}}%My own arrow.
 \newcommand*\plus{+{}}
 \newcommand*\boxSizeOfMax[1]{\makebox[\widthof{Max}][c]{#1}}
+
+%Math portuguese redefinitions.
 \theoremstyle{plain}
 \newtheorem{thm}{Teorema}
 \newtheorem{lem}[thm]{Lema}
 \newtheorem{prop}[thm]{Proposição}
 \newtheorem*{cor}{Corolário}
-
 \theoremstyle{definition}
 \newtheorem{defn}{Definição}
 \newtheorem{conj}{Conjectura}
 \newtheorem{exmp}{Exemplo}
-
 \theoremstyle{remark}
 \newtheorem*{rem}{Observação}
 
-\tcbset{%
+%Powerdot setting.
+\pdsetup{
+     counters={thm,defn,conj,exmp},
+     trans=Wipe,
+     theslide=~\arabic{slide},
+     list={itemsep=6pt}
+}
+
+% Global tcolorBox configuration.
+\tcbset{
+    listing engine=minted,
     fonttitle=\large\univrscondensed,
     coltext=pdcolor1,
     colback=pdcolor4,
-    colframe=pdcolor1
+    colframe=pdcolor1,
+    %enhanced
 }
-\newtcblisting{mycpp}[1]{%
+
+% Global tcolorBox configuration.
+\setminted{
+    style=borland,
+    %fontsize=\scriptsize,
+    fontfamily=tt,
+    funcnamehighlighting=true,
+    breaklines,
+    autogobble,
+    linenos,
+    numbersep=5pt,
+}
+
+\newtcblisting{cbox}[1]{%
     listing engine=minted,
-    minted language=c++,
-    minted style=borland,
-    fonttitle=\large\univrscondensed,
-    minted options={
-        fontsize=\scriptsize,
-        fontfamily=tt,
-        funcnamehighlighting=true,
-        breaklines,
-        autogobble,
-        linenos,
-        numbersep=5pt,
-    },
+    minted language = c,
     title=#1,
     center title,
     colback=pdcolor4,
@@ -74,13 +95,75 @@
     coltext=pdcolor1,
     listing only,
     left=5mm,
-    %drop fuzzy shadow, % tikz only
-    %enhanced % tikz only
+    halign=center,
+    fonttitle=\large\univrscondensed,
+    listing only,
 }
-\SetAlFnt{\color{pdcolor1}}   %fix algorithm2e text color
-\DeclareTextFontCommand\myemph{\em\color{pdcolor3}}
 
-\newbox\pd@imagebox
+\newtcblisting{javabox}[1]{%
+    listing engine=minted,
+    minted language = java,
+    title=#1,
+    center title,
+    colback=pdcolor4,
+    colframe=pdcolor1,
+    coltext=pdcolor1,
+    listing only,
+    left=5mm,
+    halign=center,
+    fonttitle=\large\univrscondensed,
+    listing only,
+}
+
+\newtcblisting{cppbox}[1]{%
+    listing engine=minted,
+    minted language = cpp,
+    title=#1,
+    center title,
+    colback=pdcolor4,
+    colframe=pdcolor1,
+    coltext=pdcolor1,
+    listing only,
+    left=5mm,
+    halign=center,
+    fonttitle=\large\univrscondensed,
+    listing only,
+}
+
+\newtcblisting{pythonbox}[1]{%
+    listing engine=minted,
+    minted language = python3,
+    title=#1,
+    center title,
+    colback=pdcolor4,
+    colframe=pdcolor1,
+    coltext=pdcolor1,
+    listing only,
+    left=5mm,
+    halign=center,
+    fonttitle=\large\univrscondensed,
+    listing only,
+}
+
+\newtcblisting{haskell}[1]{%
+    listing engine=minted,
+    minted language = haskell,
+    title=#1,
+    center title,
+    colback=pdcolor4,
+    colframe=pdcolor1,
+    coltext=pdcolor1,
+    listing only,
+    left=5mm,
+    halign=center,
+    fonttitle=\large\univrscondensed,
+    listing only,
+}
+
+\SetAlFnt{\color{pdcolor1}}   %Fix algorithm2e text color.
+\DeclareTextFontCommand\myemph{\em\color{pdcolor3}} %My emphasis.
+
+\newbox\pd@imagebox% The CC logo.
 \pdifsetup{landscape}{%
   \sbox\pd@imagebox{\includegraphics[clip,scale=0.4]{license.ps}%
   }%
